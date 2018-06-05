@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>YelpCamp</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    </head>
+    <body>
+        <div class="ui top fixed menu" style="position: sticky">
+            <a class="header item" href="/">YelpCamp</a>
+            <div class="right menu">
+                <% if (!currentUser) { -%>
+                    <a class="ui item" href="/login">Login</a>
+                    <a class="ui item" href="/register">Sign Up</a>
+                <% } else { -%>
+                    <a class="ui item">Signed in as: <%= currentUser.username %></a>
+                    <a class="ui item" href="/logout">Logout</a>
+                <% } -%>
+            </div>
+        </div>
+        <% if(error && error.length > 0){ %>
+            <div class="ui negative message">
+              <i class="close icon"></i>
+                <%= error %>
+            </p></div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+            <div class="ui positive message">
+              <i class="close icon"></i>
+                <%= success %>
+            </p></div>
+        <% } %>

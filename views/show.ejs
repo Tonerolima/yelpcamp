@@ -1,0 +1,73 @@
+<% include partials/header %>
+
+<div class="ui two column grid container">
+    <div class="two wide column">
+        <div class="ui vertical fluid menu">
+            <a class="item">A</a>
+            <a class="item">A</a>
+            <a class="item">A</a>
+        </div>
+        
+    </div>
+    <!-- image column-->
+    <div class="fourteen wide column">
+        <div class="thumbnail">
+            <img class="ui fluid image" src='<%= campground.image%>'>
+            <div class="caption">
+                <h2 class="ui dividing header">
+                  <%= campground.name%>
+                </h2>
+                
+                <p></p><%= campground.description%></p>
+                <p><em>Created by:</em> <%= campground.author.username%></p>
+                <% if(currentUser && currentUser.username === campground.author.username){ %>
+                    <form class='ui inline form' action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                        <a href="/campgrounds/<%= campground._id %>/edit" class="ui inverted orange submit icon button">Edit</a>
+                        <button class="ui red submit icon button">Delete</button>
+                    </form>
+                <% } %>
+            </div>
+        </div>
+        <div class="ui comments">
+            <h3 class="ui dividing header">Comments</h3>
+            <div class="ui comment">
+            <% campground.comments.forEach(function(comment){ %>
+                <a class="avatar">
+                  <i class="icon user"></i>
+                </a>
+                <div class="content">
+                  <a class="author"><%= comment.author.username%></a>
+                  <div class="text">
+                    <%= comment.text%>
+                  </div>
+                  <% if (currentUser.username === comment.author.username) { -%>
+                      <div class="ui spaced tiny icon buttons">
+                        <div class="ui orange inverted button">
+                            <a href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit"><i class="edit icon"></i></a>
+                        </div>
+                        <form class="ui red button" action='/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE' method='POST'>
+                            <i class="trash icon" onClick="javascript:this.parentNode.submit();"></i>
+                        </form>
+                      </div>
+                  <% } %>
+                </div>
+                <div class="ui divider"></div>
+            <% }) %>
+            </div>
+            <form class="ui form" action="/campgrounds/<%= campground.id %>/comments" method="POST">
+                <div class="field">
+                    <textarea name="comment[text]" rows="4"></textarea>
+                </div>
+                <!-- <div class="ui left icon input field fluid">
+                    <input type="text" name="comment[author]" placeholder="Name"></input>
+                    <i class="users icon"></i>
+                </div> -->
+                <div class="ui blue labeled submit icon button" onClick="javascript:this.parentNode.submit();">
+                  <i class="icon edit"></i> Add Comment
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer %>
