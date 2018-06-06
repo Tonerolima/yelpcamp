@@ -1,24 +1,30 @@
 <% include partials/header%>
+
 <div class="container">
-    <div class="row">
-        <h1 style="text-align:center">Login</h1>
-        <div style="width: 30%; margin: 25px auto;">
-            <form action='/login' method="POST">
+    <div style="width: 400px; margin: 25px auto;">
+        <h2 class="ui teal center aligned header">Log-in to your account</h2>
+        <form action='/login' method="POST" class="ui large form">
+            <div class='ui stacked segment'>
                 <input type='text' style="display: none" name='source' value=<%= source %>>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="username" placeholder="Username"></input>
+                <div class='field'>
+                    <div class="ui left icon fluid input">
+                        <i class="user icon"></i>
+                        <input type="text" name="username" placeholder="Username"></input>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password"></input>
+                <div class='field'>
+                    <div class="ui left icon fluid input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password"></input>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block">Login</button>
+                <input type='submit' class="ui fluid large blue submit button">
+                <div class='ui message'>
+                    Don't have an account? <a href="/register"><em>Sign Up</em></a>
                 </div>
-                Don't have an account? <a href="/register"><em>Sign Up</em></a>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
-
 
 <% include partials/footer%>
