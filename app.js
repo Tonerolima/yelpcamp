@@ -25,7 +25,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 //Connect to mongodb
-mongoose.connect("mongodb://localhost/yelp_camp_v4");
+mongoose.connect("mongodb://tony:71535old@ds257590.mlab.com:57590/yelpcampv6");
 
 
 //Passport configuration
