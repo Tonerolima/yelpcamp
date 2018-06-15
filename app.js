@@ -25,8 +25,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 //Connect to mongodb
-mongoose.connect("mongodb://tony:71535old@ds257590.mlab.com:57590/yelpcampv6");
-
+mongoose.connect(process.env.DATABASEURL);
 
 //Passport configuration
 app.use(require('express-session')({
